@@ -33,9 +33,11 @@
 {
     [FISGithubAPIClient getRepositoriesWithCompletion:^(NSArray *repoDictionaries) {
         for (NSDictionary *repoDictionary in repoDictionaries) {
-            [self.repositories addObject:[FISGithubRepository repoFromDictionary:repoDictionary]];
+            [self.repositories addObject:[FISGithubRepository makeRepoObject:repoDictionary]];
         }
         completionBlock(YES);
     }];
 }
+
+
 @end

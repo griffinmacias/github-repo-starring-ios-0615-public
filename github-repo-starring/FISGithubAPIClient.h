@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FISGithubRepository.h"
 NSString *const GITHUB_API_URL;
 @interface FISGithubAPIClient : NSObject
 
@@ -21,5 +21,8 @@ NSString *const GITHUB_API_URL;
  */
 
 +(void)getRepositoriesWithCompletion:(void (^)(NSArray *repoDictionaries))completionBlock;
-
++(void)checkIfRepoIsStarredWithFullName:(NSString *)fullName CompletionBlock:(void (^)(BOOL starred))statusCode;
++ (void)starRepoWithFullName:(NSString *)fullName CompletionBlock:(void (^)(BOOL starred))statusCode;
++ (void)unstarRepoWithFullName:(NSString *)fullName CompletionBlock:(void (^)(BOOL unstarred))statusCode;
++(void)toggleStarForRepository:(NSString *)fullName completion:(void (^)(BOOL))completionBlock;
 @end

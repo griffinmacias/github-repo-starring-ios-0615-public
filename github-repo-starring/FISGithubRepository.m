@@ -10,6 +10,18 @@
 
 @implementation FISGithubRepository
 
+-(instancetype)initWithFullName:(NSString *)fullName HtmlUrl:(NSURL *)htmlURL Repository:(NSString *)repositoryID
+{
+    self = [super init];
+    
+    if (self) {
+        _fullName = fullName;
+        _htmlURL = htmlURL;
+        _repositoryID = repositoryID;
+    }
+    
+    return self;
+}
 -(BOOL)isEqual:(id)object
 {
     FISGithubRepository *repo2 = (FISGithubRepository *)object;
@@ -18,12 +30,10 @@
     return [repo2.repositoryID isEqualToString:self.repositoryID] && [repo2.fullName isEqualToString:repo2.fullName] && [urlA isEqualToString:urlB];
 }
 
-+(FISGithubRepository *)repoFromDictionary:(NSDictionary *)repoDictionary
++ (FISGithubRepository *)makeRepoObject:(NSDictionary *)repoInfo
 {
-    FISGithubRepository *repo = [[FISGithubRepository alloc] init];
-    repo.repositoryID = [repoDictionary[@"id"] stringValue];
-    repo.fullName=repoDictionary[@"full_name"];
-    repo.htmlURL=[NSURL URLWithString:repoDictionary[@"html_url"]];
+    FISGithubRepository *repo = [[FISGithubRepository alloc] initWithFullName:repoInfo[@"full_name"] HtmlUrl:[NSURL URLWithString:repoInfo[@"url"]] Repository:[repoInfo[@"id"] stringValue]];
+    
     return repo;
 }
 @end

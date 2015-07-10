@@ -32,5 +32,6 @@
  */
 @property (strong, nonatomic) NSString *repositoryID;
 
-+(FISGithubRepository *)repoFromDictionary:(NSDictionary *)repoDictionary;
+-(instancetype)initWithFullName:(NSString *)fullName HtmlUrl:(NSURL *)htmlURL Repository:(NSString *)repositoryID;
++ (FISGithubRepository *)makeRepoObject:(NSDictionary *)repoInfo;
 @end
